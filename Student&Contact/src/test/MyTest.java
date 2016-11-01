@@ -63,4 +63,24 @@ public class MyTest {
 		session.commit();
 		session.close();
 	}
+	
+	@Test
+	public void testUpdate() throws IOException {
+		SqlSession session = MyBatisUtils.openSession();		
+		ContactMapper contactMapper = session.getMapper(ContactMapper.class);
+		StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+//		Contact contact = new Contact();
+//		contact.setId(7);
+//		contact.setName("ËïÙ³");
+//		contact.setSex("Å®");
+//		contactMapper.update1(contact);
+
+		Contact contact = new Contact();
+		contact.setId(7);
+		contact.setStudent(studentMapper.get(16));
+		
+		contactMapper.update2(contact);
+		session.commit();
+		session.close();
+	}
 }

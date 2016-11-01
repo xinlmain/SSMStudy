@@ -61,4 +61,10 @@
   <delete id="delete">
   	delete from contact where id=#{id}
   </delete>
+  <update id="update1" parameterType="javastudy.Contact">
+  	update contact set name=#{name},sex=#{sex} where id=#{id}
+  </update>
+  <update id="update2" parameterType="javastudy.Contact">
+  	update contact set sid=#{student.id} where id=#{id}
+  </update>
 </mapper>
