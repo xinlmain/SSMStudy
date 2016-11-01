@@ -51,4 +51,16 @@ public class MyTest {
 		System.out.println(contact);
 		session.close();
 	}
+	
+	@Test
+	public void testDelete() throws IOException {
+		SqlSession session = MyBatisUtils.openSession();		
+		ContactMapper contactMapper = session.getMapper(ContactMapper.class);
+		contactMapper.delete(5);
+		
+		StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+		studentMapper.delete(14);
+		session.commit();
+		session.close();
+	}
 }

@@ -60,4 +60,7 @@
   		<result property="phone" column="cphone"/>
   	</association>
   </resultMap>
+  <delete id="delete">
+  	delete from student where id=#{id}
+  </delete>
 </mapper>
