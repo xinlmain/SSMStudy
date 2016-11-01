@@ -58,11 +58,12 @@ public class Student {
 	public void setContact(Contact contact) {
 		this.contact = contact;
 	}
+	
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", name=" + name + ", sex=" + sex + ", pwd=" + pwd + ", phone=" + phone
-				+ ", grade=" + grade + ", photo=" + photo + "]";
+				+ ", grade=" + grade + ", photo=" + photo + ", contact=" + contact + "]";
 	}
-
+	
 	
 }

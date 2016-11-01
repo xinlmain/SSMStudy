@@ -27,8 +27,6 @@ public class MyTest {
 		student.setSex("ÄĞ");
 		studentMapper.add(student);
 		
-		session.commit();
-		
 		ContactMapper contactMapper = session.getMapper(ContactMapper.class);
 		Contact contact = new Contact();
 		contact.setName("ÖìÀöÙ»");
@@ -41,4 +39,16 @@ public class MyTest {
 		session.close();
 	}
 
+	@Test
+	public void testSelect() throws IOException {
+		SqlSession session = MyBatisUtils.openSession();
+		StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+		Student student = studentMapper.get(8);
+		System.out.println(student.getContact());
+		
+		ContactMapper contactMapper = session.getMapper(ContactMapper.class);
+		Contact contact = contactMapper.get(1);
+		System.out.println(contact);
+		session.close();
+	}
 }
