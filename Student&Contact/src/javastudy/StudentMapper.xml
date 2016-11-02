@@ -64,4 +64,10 @@
   <delete id="delete">
   	delete from student where id=#{id}
   </delete>
+  <update id="update1" parameterType="javastudy.Student">
+  	update student set pwd=#{pwd},grade=#{grade} where id=#{id}
+  </update>
+  <update id="update2" parameterType="javastudy.Student">
+  	update student set id=#{id} where name=#{name}
+  </update>
 </mapper>

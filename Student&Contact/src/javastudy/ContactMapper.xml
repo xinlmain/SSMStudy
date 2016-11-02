@@ -35,12 +35,13 @@
 		c.relation crelation,
 		c.phone cphone
 	from 
-		student s, 
+		student s
+	right join
 		contact c 
-	where 
-		c.id = #{id} 
-	and 
+	on 
 		c.sid = s.id
+	where
+		c.id = #{id} 
   </select>
   <resultMap type="javastudy.Contact" id="contact">
   	<id property="id" column="cid"/>

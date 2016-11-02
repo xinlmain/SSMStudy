@@ -65,7 +65,7 @@ public class MyTest {
 	}
 	
 	@Test
-	public void testUpdate() throws IOException {
+	public void testUpdateContact() throws IOException {
 		SqlSession session = MyBatisUtils.openSession();		
 		ContactMapper contactMapper = session.getMapper(ContactMapper.class);
 		StudentMapper studentMapper = session.getMapper(StudentMapper.class);
@@ -80,6 +80,24 @@ public class MyTest {
 		contact.setStudent(studentMapper.get(16));
 		
 		contactMapper.update2(contact);
+		session.commit();
+		session.close();
+	}
+	
+	@Test
+	public void testUpdateStudent() throws IOException {
+		SqlSession session = MyBatisUtils.openSession();		
+		StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+//		Student student = new Student();
+//		student.setId(16);
+//		student.setPwd("123");
+//		student.setGrade("¶þÄê¼¶");
+//		studentMapper.update1(student);
+		
+		Student student = new Student();
+		student.setId(2);
+		student.setName("µË³¬");
+		studentMapper.update2(student);
 		session.commit();
 		session.close();
 	}
