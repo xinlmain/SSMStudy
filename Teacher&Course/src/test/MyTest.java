@@ -44,5 +44,24 @@ public class MyTest {
 		session.commit();
 		session.close();
 	}
+	
+	@Test
+	public void testGetCourse() throws IOException {
+		SqlSession session = MyBatisUtils.openSession();
+		CourseMapper courseMapper = session.getMapper(CourseMapper.class);
+		Course course = courseMapper.get(5);
+		System.out.println(course);
+		session.close();
+	}
+	
+	@Test
+	public void testGetTeacher() throws IOException {
+		SqlSession session = MyBatisUtils.openSession();
+		TeacherMapper teacherMapper = session.getMapper(TeacherMapper.class);
+		Teacher teacher = teacherMapper.get(3);
+		System.out.println(teacher);
+		session.close();
+	}
+	
 
 }

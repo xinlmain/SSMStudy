@@ -16,5 +16,36 @@
 		#{phone}
 	)
   </insert>
-
+  <select id="get" resultMap="teacher">
+  	select
+  		t.id tid,
+  		t.name tname,
+  		t.sex tsex,
+  		t.phone tphone,
+  		c.id cid,
+  		c.name cname,
+  		c.type ctype,
+  		c.hours chours 		
+  	from
+  		teacher t 		
+  	left join
+  		course c
+  	on
+  		c.tid = t.id
+  	where
+  		t.id = #{id}
+  </select>
+  <resultMap type="javastudy.Teacher" id="teacher">
+  	<id property="id" column="tid"/>
+	<result property="name" column="tname"/>
+	<result property="sex" column="tsex"/>
+	<result property="phone" column="tphone"/>
+  	
+  	<collection property="courses" ofType="javastudy.Course">
+  		<id property="id" column="cid"/>
+	  	<result property="name" column="cname"/>
+	  	<result property="type" column="ctype"/>
+	  	<result property="hours" column="chours"/>
+  	</collection>
+  </resultMap>
 </mapper>
