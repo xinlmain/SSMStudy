@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="javastudy.CourseMapper">
+  <select id="get" resultMap="course">
+  	select
+  		cid,cname,ctype,chours,
+			tid,tname,tsex,tphone,
+  		sid,sname,ssex,spwd,sphone,sgrade
+  	from
+		(
+		select
+			c.id cid,
+			c.name cname,
+			c.type ctype,
+			c.hours chours,
+			t.id tid,
+			t.name tname,
+			t.sex tsex,
+			t.phone tphone
+		from
+			course c
+		left join
+			teacher t
+		on 
+			c.tid = t.id
+		) t1
+  		left join
+	  	(
+	  	select  
+			s.id sid,
+			s.name sname,
+			s.sex ssex,
+			s.pwd spwd,
+			s.phone sphone,
+			s.grade sgrade,
+			s.photo sphoto,
+			sc.cid	sccid
+		from 
+			student_course sc 
+		left join
+			student s
+		on 
+			sc.sid = s.id
+		) as t2
+	on t2.sccid = cid
+	where 
+		cid = #{id}
+  </select>
+  <resultMap type="javastudy.Course" id="course">
+  	<id property="id" column="cid"/>
+	<result property="name" column="cname"/>
+	<result property="type" column="ctype"/>
+	<result property="hours" column="chours"/>
+	<association property="teacher" javaType="javastudy.Teacher">
+		<id property="id" column="tid"/>
+		<result property="name" column="tname"/>
+		<result property="sex" column="tsex"/>
+		<result property="phone" column="tphone"/>
+	</association>
+  	<collection property="students" ofType="javastudy.Student">
+  		<id property="id" column="sid"/>
+	  	<result property="name" column="sname"/>
+	  	<result property="sex" column="ssex"/>
+	  	<result property="pwd" column="spwd"/>
+	  	<result property="phone" column="sphone"/>
+	  	<result property="grade" column="sgrade"/>
+	  	<result property="photo" column="sphoto"/>
+  	</collection>
+  </resultMap>
+</mapper>
