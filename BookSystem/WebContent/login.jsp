@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="check.do" method="post">
+<form action="check1.do" method="post">
 <table>
 <tr><td>学生姓名</td><td><input type="text" name="name"></td></tr>
 <tr><td>密码</td><td><input type="password" name="pwd"></td></tr>
