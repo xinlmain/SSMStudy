@@ -5,8 +5,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="$(pageContext.request.contextPath)/jslib/jquery-1.11.1.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+})
+</script>
 </head>
 <body>
-欢迎${name}登录！
+欢迎${name}登录！<br/>
+<br/>
+<br/>
+请输入书名进行模糊查询：<input type="text" id="pattern">
+<input type="button" id="get" value="获取图书"><br/>
+<table id="books">
+</table>
 </body>
 </html>
