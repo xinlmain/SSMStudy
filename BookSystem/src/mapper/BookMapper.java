@@ -1,10 +1,10 @@
 package mapper;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import entity.Book;
 
 public interface BookMapper {
 	
-	public List<Book> find(String pattern);
+	public ArrayList<Book> find(String pattern);
 }

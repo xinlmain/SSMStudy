@@ -10,7 +10,16 @@
 $(function(){
 	$("#get").click(function(){
 		$.post("book/get.do", {pattern:$("#pattern").val()}, function(data){
-			alert(data.length);
+			//alert(data.length);
+			$("#books").append("<tr><td>序号</td><td>名称</td><td>价格</td><td>作者</td><td>出版社</td></tr>");
+			for (i=0;i<data.length;i++) {
+				$("#books").append("<tr><td>"
+						 + data[i].id + "</td><td>"
+						 + data[i].name + "</td><td>"
+						 + data[i].price + "</td><td>"
+						 + data[i].author + "</td><td>"
+						 + data[i].publisher + "</td></tr>");
+			}
 		}, "json");
 	});
 })

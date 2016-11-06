@@ -1,7 +1,7 @@
 package controller;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,9 +16,9 @@ public class BookController {
 	
 	@RequestMapping("/get.do")
 	@ResponseBody
-	public List<Book> find(String pattern) throws IOException {
+	public ArrayList<Book> find(String pattern) throws IOException {
 		BookDAO dao = new BookDAO();
-		List<Book> list = dao.find("%" + pattern + "%");
+		ArrayList<Book> list = dao.find("%" + pattern + "%");
 		return list;		
 	}
 }
