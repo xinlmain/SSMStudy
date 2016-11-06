@@ -18,13 +18,15 @@ public class UserController {
 	@RequestMapping("/check.do")
 	public String check(HttpSession session, User user) throws IOException {
 		
-		String path = "login.jsp";
+		String path = "login";
 		UserDAO dao = new UserDAO();
 		if (dao.isValid(user)) {
 			session.setAttribute("name", user.getName());
-			path = "welcome.jsp";
+			path = "welcome";
 		}
-		return "redirect:" + path;
+		//通过跳转方式，视图解析器不起作用
+		//return "redirect:" + path;
+		return path;
 	}
 
 
