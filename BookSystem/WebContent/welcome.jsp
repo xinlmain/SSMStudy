@@ -5,10 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="$(pageContext.request.contextPath)/jslib/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jslib/jquery-1.11.1.js"></script>
 <script type="text/javascript">
 $(function(){
-	
+	$("#get").click(function(){
+		$.post("book/get.do", {pattern:$("#pattern").val()}, function(data){
+			alert(data.length);
+		}, "json");
+	});
 })
 </script>
 </head>
