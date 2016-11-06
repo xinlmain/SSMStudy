@@ -16,7 +16,6 @@
     </environment>
   </environments>
   <mappers>
-    <mapper class="javastudy.TeacherMapper"/>
-    <mapper class="javastudy.CourseMapper"/>
+    <mapper class="mapper.UserMapper"/>
   </mappers>
 </configuration>
