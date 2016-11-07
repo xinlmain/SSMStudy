@@ -2,12 +2,11 @@ package controller;
 
 import java.io.IOException;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import dao.UserDAO;
 import entity.User;
@@ -15,12 +14,23 @@ import entity.User;
 @Controller
 public class UserController {
 	
+	UserDAO userDAO;
+	
+	public UserDAO getUserDAO() {
+		return userDAO;
+	}
+
+	@Resource
+	public void setUserDAO(UserDAO userDAO) {
+		this.userDAO = userDAO;
+	}
+
 	@RequestMapping("/check.do")
 	public String check(HttpSession session, User user) throws IOException {
 		
 		String path = "login";
-		UserDAO dao = new UserDAO();
-		if (dao.isValid(user)) {
+		
+		if (userDAO.isValid(user)) {
 			session.setAttribute("name", user.getName());
 			path = "welcome";
 		}

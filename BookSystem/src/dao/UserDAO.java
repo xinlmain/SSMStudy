@@ -2,21 +2,33 @@ package dao;
 
 import java.io.IOException;
 
-import org.apache.ibatis.session.SqlSession;
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Component;
 
 import entity.User;
 import mapper.UserMapper;
-import utility.MyBatisUtils;
 
+@Component
 public class UserDAO {
+	
+	UserMapper userMapper;
+	
+	public UserMapper getUserMapper() {
+		return userMapper;
+	}
+
+	@Resource
+	public void setUserMapper(UserMapper userMapper) {
+		this.userMapper = userMapper;
+	}
+
 	public boolean isValid(User user) throws IOException {
-		SqlSession session = MyBatisUtils.openSession();
-		UserMapper mapper = session.getMapper(UserMapper.class);
+
 		boolean flag = false;
-		if (mapper.doesExist(user) == 1) {
+		if (userMapper.doesExist(user) == 1) {
 			flag = true;
 		}
-		session.close();
 		return flag;
 	}
 }

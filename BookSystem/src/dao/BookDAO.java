@@ -3,20 +3,30 @@ package dao;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.apache.ibatis.session.SqlSession;
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Component;
 
 import entity.Book;
 import mapper.BookMapper;
-import utility.MyBatisUtils;
 
+@Component
 public class BookDAO {
+
+	BookMapper bookMapper;
+	
+	public BookMapper getBookMapper() {
+		return bookMapper;
+	}
+
+	@Resource
+	public void setBookMapper(BookMapper bookMapper) {
+		this.bookMapper = bookMapper;
+	}
 
 	public ArrayList<Book> find(String pattern) throws IOException {
 		
-		SqlSession session = MyBatisUtils.openSession();
-		BookMapper mapper = session.getMapper(BookMapper.class);
-		ArrayList<Book> list = mapper.find(pattern);
-		session.close();
+		ArrayList<Book> list = bookMapper.find(pattern);
 		return list;
 	}
 }
